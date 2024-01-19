@@ -1,53 +1,53 @@
-#name: Release batch transformer
-#
-#on:
-#  push:
-#    tags:
-#      - '*'
-#
-#jobs:
-#  release-batch:
-#    if: startsWith(github.ref, 'refs/tags/')
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout Github
-#        uses: actions/checkout@v2
-#
-#      - uses: coursier/cache-action@v6
-#
-#      - name: Set up JDK 1.11 for batch transformer
-#        uses: actions/setup-java@v1
-#        with:
-#          java-version: 1.11
-#          name: build
-#
-#      - name: Get current SBT version
-#        id: ver
-#        run: |
-#          export PROJECT_VERSION=$(sbt version -Dsbt.log.noformat=true | perl -ne 'print "$1\n" if /info.*(\d+\.\d+\.\d+[^\r\n]*)/' | tail -n 1 | tr -d '\n')
-#          echo "::set-output name=project_version::$PROJECT_VERSION"
-#
-#      - name: Compare SBT version with git tag
-#        run: |
-#          tag=${GITHUB_REF##*/}
-#          project_version=${{ steps.ver.outputs.project_version }}
-#          if [[ "${tag}" = "${project_version}" ]]; then
-#            echo "Tag version (${tag}) matches project version (${project_version}). Deploying!"
-#          else
-#            echo "Tag version (${tag}) doesn't match version in scala project (${project_version}). Aborting!"
-#            exit 1
-#          fi
-#
-#      - name: Build artifact
-#        run: sbt "project transformerBatch" "set test in assembly := {}" assembly
-#
-#      - name: Set environmental variables
-#        id: vars
-#        run: |
-#          export SOURCE_DIR=modules/transformer-batch/target/scala-2.12/assembled-jar
-#          export DEST_DIR=4-storage/transformer-batch
-#          echo "::set-output name=source_dir::$SOURCE_DIR"
-#          echo "::set-output name=dest_dir::$DEST_DIR"
+name: Release batch transformer
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  release-batch:
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Github
+        uses: actions/checkout@v2
+
+      - uses: coursier/cache-action@v6
+
+      - name: Set up JDK 1.11 for batch transformer
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.11
+          name: build
+
+      - name: Get current SBT version
+        id: ver
+        run: |
+          export PROJECT_VERSION=$(sbt version -Dsbt.log.noformat=true | perl -ne 'print "$1\n" if /info.*(\d+\.\d+\.\d+[^\r\n]*)/' | tail -n 1 | tr -d '\n')
+          echo "::set-output name=project_version::$PROJECT_VERSION"
+
+      - name: Compare SBT version with git tag
+        run: |
+          tag=${GITHUB_REF##*/}
+          project_version=${{ steps.ver.outputs.project_version }}
+          if [[ "${tag}" = "${project_version}" ]]; then
+            echo "Tag version (${tag}) matches project version (${project_version}). Deploying!"
+          else
+            echo "Tag version (${tag}) doesn't match version in scala project (${project_version}). Aborting!"
+            exit 1
+          fi
+
+      - name: Build artifact
+        run: sbt "project transformerBatch" "set test in assembly := {}" assembly
+
+      - name: Set environmental variables
+        id: vars
+        run: |
+          export SOURCE_DIR=modules/transformer-batch/target/scala-2.12/assembled-jar
+          export DEST_DIR=4-storage/transformer-batch
+          echo "::set-output name=source_dir::$SOURCE_DIR"
+          echo "::set-output name=dest_dir::$DEST_DIR"
 
 #      - name: Deploy to eu-west-1
 #        uses: jakejarvis/s3-sync-action@master
