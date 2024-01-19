@@ -1,2 +1,4 @@
 target/
 dynamodb-local/
+.bsp/
+.idea/
