@@ -247,7 +247,7 @@
     # HTTP method used to send the heartbeat event
     "method": "POST"
     # URI of the collector receiving the heartbeat event
-    "collectorUri": "collector-g.snowplowanalytics.com"
+    "collectorUri": "sp.snowcatcloud.com"
     # Port of the collector receiving the heartbeat event
     "collectorPort": 443
     # Whether to use https or not
