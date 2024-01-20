@@ -1,4 +1,4 @@
-# Relational Database Loader
+# OpenSnowcat Relational Database Loader
 
 ![GitHub Release](https://img.shields.io/github/v/release/opensnowcat/opensnowcat-rdb-loader?link=https%3A%2F%2Fgithub.com%2Fopensnowcat%2Fopensnowcat-rdb-loader%2Freleases)
 [![main](https://github.com/opensnowcat/opensnowcat-rdb-loader/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/opensnowcat/opensnowcat-rdb-loader/actions/workflows/ci.yml)
