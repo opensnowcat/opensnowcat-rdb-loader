@@ -1,14 +1,13 @@
-# Relational Database Loader
+# OpenSnowcat Relational Database Loader
 
-[![Build Status][build-image]][build]
-[![Release][release-image]][releases]
+![GitHub Release](https://img.shields.io/github/v/release/opensnowcat/opensnowcat-rdb-loader?link=https%3A%2F%2Fgithub.com%2Fopensnowcat%2Fopensnowcat-rdb-loader%2Freleases)
+[![main](https://github.com/opensnowcat/opensnowcat-rdb-loader/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/opensnowcat/opensnowcat-rdb-loader/actions/workflows/ci.yml)
 [![License][license-image]][license]
-[![Scala Steward][scala-steward-image]][scala-steward]
-[![Coverage Status][coveralls-image]][coveralls]
+
 
 ## Introduction
 
-This project contains applications required to load Snowplow data into various data warehouses.
+The OpenSnowcat RDB loader is an open-source fork of Snowplow RDB Loader following the license changes in 2023 and early 2024. This project contains applications required to load Snowplow data into various data warehouses.
 
 It consists of two types of applications: Transformers and Loaders
 
@@ -41,16 +40,9 @@ Loaders construct necessary SQL statements to load transformed events then they 
 
 At the moment, we have loader applications for Redshift, Databricks and Snowflake.
 
-## Find out more
-
-| Technical Docs             | Setup Guide          | Roadmap & Contributing |
-|----------------------------|----------------------|------------------------|
-| ![i1][techdocs-image]      | ![i2][setup-image]   | ![i3][roadmap-image]   |
-| [Technical Docs][techdocs] | [Setup Guide][setup] | [Roadmap][roadmap]     |
-
 ## Copyright and License
 
-Snowplow Relational Database Loader is copyright 2012-2022 Snowplow Analytics Ltd.
+Copyright OpenSnowcat Contributors. See [NOTICE](NOTICE.txt) for details.
 
 Licensed under the **[Apache License, Version 2.0][license]** (the "License");
 you may not use this software except in compliance with the License.
@@ -61,27 +53,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
+## Trademark
 
-[techdocs-image]: https://d3i6fms1cm1j0i.cloudfront.net/github/images/techdocs.png
-[setup-image]: https://d3i6fms1cm1j0i.cloudfront.net/github/images/setup.png
-[roadmap-image]: https://d3i6fms1cm1j0i.cloudfront.net/github/images/roadmap.png
-[setup]: https://docs.snowplow.io/docs/getting-started-on-snowplow-open-source/
-[techdocs]: https://docs.snowplow.io/docs/pipeline-components-and-applications/loaders-storage-targets/snowplow-rdb-loader/
-[roadmap]: https://github.com/snowplow/snowplow/projects/7
+OpenSnowcat includes certain Apache-licensed Snowplow code from Snowplow Ltd. and other source code. Snowplow Ltd. is not the source of that other source code. SNOWPLOW is a registered trademark of Snowplow Ltd.
 
-[spark]: http://spark.apache.org/
-
-[build-image]: https://github.com/snowplow/snowplow-rdb-loader/workflows/CI/badge.svg
-[build]: https://github.com/snowplow/snowplow-rdb-loader/actions/workflows/ci.yml
-
-[release-image]: https://img.shields.io/badge/release-5.6.3-blue.svg?style=flat
-[releases]: https://github.com/snowplow/snowplow-rdb-loader/releases
-
-[license-image]: https://img.shields.io/badge/license-Apache--2-blue.svg?style=flat
-[license]: https://www.apache.org/licenses/LICENSE-2.0
-
-[scala-steward-image]: https://img.shields.io/badge/Scala_Steward-helping-blue.svg?style=flat&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAMAAAARSr4IAAAAVFBMVEUAAACHjojlOy5NWlrKzcYRKjGFjIbp293YycuLa3pYY2LSqql4f3pCUFTgSjNodYRmcXUsPD/NTTbjRS+2jomhgnzNc223cGvZS0HaSD0XLjbaSjElhIr+AAAAAXRSTlMAQObYZgAAAHlJREFUCNdNyosOwyAIhWHAQS1Vt7a77/3fcxxdmv0xwmckutAR1nkm4ggbyEcg/wWmlGLDAA3oL50xi6fk5ffZ3E2E3QfZDCcCN2YtbEWZt+Drc6u6rlqv7Uk0LdKqqr5rk2UCRXOk0vmQKGfc94nOJyQjouF9H/wCc9gECEYfONoAAAAASUVORK5CYII=
-[scala-steward]: https://scala-steward.org
-
-[coveralls]: https://coveralls.io/github/snowplow/snowplow-rdb-loader?branch=master
-[coveralls-image]: https://coveralls.io/repos/github/snowplow/snowplow-rdb-loader/badge.svg?branch=master
+[license-image]: http://img.shields.io/badge/license-Apache--2-blue.svg?style=flat
+[license]: http://www.apache.org/licenses/LICENSE-2.0
