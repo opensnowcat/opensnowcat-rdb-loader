@@ -45,7 +45,7 @@ object Dependencies {
     val http4sBlaze = "0.23.14" // this dep fell out of sync with http4s-core versioning - 0.23.14 is the last 0.X release.
     val scalaTracker = "2.0.0"
 
-    val spark = "3.3.1"
+    val spark = "3.3.4"
     val eventsManifest = "0.3.0"
     val schemaDdl = "0.18.2"
     val jacksonModule = "2.14.2" // Override incompatible version in spark runtime
