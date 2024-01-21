@@ -12,20 +12,22 @@
  */
 
 /**
- * Inspired by the same issue in the Iglu Server, see commit https://github.com/snowplow/iglu-server/pull/128/commits/d4a0940c12181dd40bc5cdc2249f2c84c5296353
- * 
- * Currently we have some libs that depend on circe 0.14.x and some that depend on 0.13.x.
- * These reported binary incompatibilities can only be removed once we have bumped cats-effect to version 3.
- * For now, we ignore the reported binary incompatibilities because testing shows it is safe.
+ * Inspired by the same issue in the Iglu Server, see commit
+ * https://github.com/snowplow/iglu-server/pull/128/commits/d4a0940c12181dd40bc5cdc2249f2c84c5296353
+ *
+ * Currently we have some libs that depend on circe 0.14.x and some that depend on 0.13.x. These
+ * reported binary incompatibilities can only be removed once we have bumped cats-effect to version
+ * 3. For now, we ignore the reported binary incompatibilities because testing shows it is safe.
  */
 ThisBuild / libraryDependencySchemes ++= Seq(
   "io.circe" %% "circe-core" % "always",
   "io.circe" %% "circe-generic" % "always",
   "io.circe" %% "circe-parser" % "always",
-  "io.circe" %% "circe-jawn" % "always",
+  "io.circe" %% "circe-jawn" % "always"
 )
 
-lazy val root = project.in(file("."))
+lazy val root = project
+  .in(file("."))
   .aggregate(
     aws,
     gcp,
@@ -39,7 +41,7 @@ lazy val root = project.in(file("."))
     transformerBatch,
     transformerKinesis,
     transformerPubsub,
-    transformerKafka 
+    transformerKafka
   )
 
 lazy val common: Project = project
@@ -84,7 +86,7 @@ lazy val loader = project
   .settings(addCompilerPlugin(Dependencies.betterMonadicFor))
   .settings(libraryDependencies ++= Dependencies.loaderDependencies)
   .dependsOn(
-    aws % "compile->compile;test->test;runtime->runtime", 
+    aws % "compile->compile;test->test;runtime->runtime",
     gcp % "compile->compile;test->test",
     azure % "compile->compile;test->test"
   )
@@ -111,7 +113,7 @@ lazy val snowflakeLoader = project
   .settings(BuildSettings.snowflakeBuildSettings)
   .settings(addCompilerPlugin(Dependencies.betterMonadicFor))
   .settings(libraryDependencies ++= Dependencies.snowflakeDependencies)
-  .dependsOn(common % "compile->compile;test->test",loader % "compile->compile;test->test;runtime->runtime")
+  .dependsOn(common % "compile->compile;test->test", loader % "compile->compile;test->test;runtime->runtime")
   .enablePlugins(JavaAppPackaging, SnowplowDockerPlugin, BuildInfoPlugin)
 
 lazy val snowflakeLoaderDistroless = project
@@ -189,9 +191,11 @@ lazy val transformerKafka = project
   .settings(addCompilerPlugin(Dependencies.betterMonadicFor))
   .settings(libraryDependencies ++= Dependencies.transformerKafkaDependencies)
   .settings(excludeDependencies ++= Dependencies.commonStreamTransformerExclusions)
-  .dependsOn(commonTransformerStream % "compile->compile;test->test;runtime->runtime", azure % "compile->compile;test->test;runtime->runtime")
+  .dependsOn(
+    commonTransformerStream % "compile->compile;test->test;runtime->runtime",
+    azure % "compile->compile;test->test;runtime->runtime"
+  )
   .enablePlugins(JavaAppPackaging, SnowplowDockerPlugin, BuildInfoPlugin)
-
 
 lazy val transformerKafkaDistroless = project
   .in(file("modules/distroless/transformer-kafka"))
