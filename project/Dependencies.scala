@@ -41,7 +41,7 @@ object Dependencies {
     val monocle = "2.0.3"
     val catsRetry = "3.1.0"
     val log4cats = "2.5.0"
-    val http4s = "0.23.17"
+    val http4s = "0.23.25"
     val http4sBlaze = "0.23.14" // this dep fell out of sync with http4s-core versioning - 0.23.14 is the last 0.X release.
     val scalaTracker = "2.0.0"
 
