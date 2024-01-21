@@ -58,7 +58,7 @@ object Dependencies {
     val nimbusJose = "9.31" // Fix CVE
     val snappyJava = "1.1.10.1" // Fix CVE
     val commonsText = "1.10.0" // Fix CVE
-    val ivy = "2.5.1" // Fix CVE
+    val ivy = "2.5.2" // Fix CVE
 
     val slf4j = "2.0.3"
     val redshiftJdbc = "1.2.55.1083"
