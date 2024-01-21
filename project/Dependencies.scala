@@ -29,7 +29,7 @@ object Dependencies {
     val manifest = "0.3.0"
     val fs2 = "3.3.0"
     val fs2Aws = "4.1.0"
-    val fs2Blobstore = "0.9.7"
+    val fs2Blobstore = "0.9.12"
     val fs2Cron = "0.7.2"
     val fs2PubSub = "0.21.0"
     val fs2Kafka = "3.0.0"
