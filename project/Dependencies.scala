@@ -23,7 +23,7 @@ object Dependencies {
     val analyticsSdk = "3.1.0"
     val cron4sCirce = "0.6.1"
     val circe = "0.14.1"
-    val circeConfig = "0.10.0"
+    val circeConfig = "0.10.1"
     val cats = "2.2.0"
     val catsEffect = "3.3.14"
     val manifest = "0.3.0"
