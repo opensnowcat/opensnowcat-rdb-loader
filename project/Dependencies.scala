@@ -17,65 +17,65 @@ object Dependencies {
   object V {
     // Scala (Loader)
     val decline = "2.4.1"
-    val igluClient = "3.0.0"
+    val igluClient = "3.1.0"
     val igluCore = "1.1.1"
     val badrows = "2.2.0"
     val analyticsSdk = "3.1.0"
     val cron4sCirce = "0.6.1"
     val circe = "0.14.1"
-    val circeConfig = "0.10.0"
+    val circeConfig = "0.10.1"
     val cats = "2.2.0"
-    val catsEffect = "3.3.14"
+    val catsEffect = "3.5.3"
     val manifest = "0.3.0"
     val fs2 = "3.3.0"
     val fs2Aws = "4.1.0"
     val fs2Blobstore = "0.9.7"
     val fs2Cron = "0.7.2"
     val fs2PubSub = "0.21.0"
-    val fs2Kafka = "3.0.0"
+    val fs2Kafka = "3.0.1"
     val secretManager = "2.7.0"
-    val gcpStorage = "2.16.0"
+    val gcpStorage = "2.31.0"
     val azureIdentity = "1.9.0"
     val azureKeyVault = "4.6.2"
-    val doobie = "1.0.0-RC2"
-    val monocle = "2.0.3"
+    val doobie = "1.0.0-RC5"
+    val monocle = "2.0.5"
     val catsRetry = "3.1.0"
-    val log4cats = "2.5.0"
+    val log4cats = "2.6.0"
     val http4s = "0.23.17"
     val http4sBlaze = "0.23.14" // this dep fell out of sync with http4s-core versioning - 0.23.14 is the last 0.X release.
     val scalaTracker = "2.0.0"
 
     val spark = "3.3.1"
-    val eventsManifest = "0.3.0"
+    val eventsManifest = "0.4.0"
     val schemaDdl = "0.18.2"
-    val jacksonModule = "2.14.2" // Override incompatible version in spark runtime
+    val jacksonModule = "2.14.3" // Override incompatible version in spark runtime
     val jacksonDatabind = "2.14.3"
     val parquet4s = "2.10.0"
-    val hadoopClient = "3.3.4"
+    val hadoopClient = "3.3.6"
     val hadoopGcpClient = "hadoop3-2.2.5"
-    val parquetHadoop = "1.12.3"
-    val jsonSmart = "2.4.9" // Fix CVE
+    val parquetHadoop = "1.13.1"
+    val jsonSmart = "2.4.11" // Fix CVE
     val nimbusJose = "9.31" // Fix CVE
-    val snappyJava = "1.1.10.1" // Fix CVE
+    val snappyJava = "1.1.10.5" // Fix CVE
     val commonsText = "1.10.0" // Fix CVE
-    val ivy = "2.5.1" // Fix CVE
+    val ivy = "2.5.2" // Fix CVE
 
-    val slf4j = "2.0.3"
+    val slf4j = "2.0.11"
     val redshiftJdbc = "1.2.55.1083"
-    val snowflakeJdbc = "3.13.30"
+    val snowflakeJdbc = "3.13.34"
     val enumeratum = "1.7.3"
     val aws = "1.12.261"
-    val aws2 = "2.18.8"
+    val aws2 = "2.18.41"
     val jSch = "0.2.16"
     val sentry = "1.7.30"
-    val protobuf = "3.21.7" // Fix CVE
+    val protobuf = "3.21.12" // Fix CVE
     val kinesisClient = "2.4.3"
-    val nettyCodec = "4.1.86.Final" // Fix CVE
+    val nettyCodec = "4.1.106.Final" // Fix CVE
 
     // Scala (test only)
-    val specs2 = "4.17.0"
+    val specs2 = "4.20.4"
     val catsTesting = "1.5.0"
-    val catsEffectTestkit = "3.4.5"
+    val catsEffectTestkit = "3.4.11"
     val scalaCheck = "1.17.0"
 
     val betterMonadicFor = "0.3.1"
