@@ -60,7 +60,7 @@ object Dependencies {
     val commonsText = "1.10.0" // Fix CVE
     val ivy = "2.5.2" // Fix CVE
 
-    val slf4j = "2.0.3"
+    val slf4j = "2.0.11"
     val redshiftJdbc = "1.2.55.1083"
     val snowflakeJdbc = "3.13.34"
     val enumeratum = "1.7.3"
