@@ -51,7 +51,7 @@ object Dependencies {
     val jacksonModule = "2.14.3" // Override incompatible version in spark runtime
     val jacksonDatabind = "2.14.3"
     val parquet4s = "2.10.0"
-    val hadoopClient = "3.3.4"
+    val hadoopClient = "3.3.6"
     val hadoopGcpClient = "hadoop3-2.2.5"
     val parquetHadoop = "1.12.3"
     val jsonSmart = "2.4.9" // Fix CVE
