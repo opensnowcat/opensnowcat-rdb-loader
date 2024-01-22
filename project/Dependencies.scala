@@ -37,7 +37,7 @@ object Dependencies {
     val gcpStorage = "2.31.0"
     val azureIdentity = "1.9.0"
     val azureKeyVault = "4.6.2"
-    val doobie = "1.0.0-RC2"
+    val doobie = "1.0.0-RC5"
     val monocle = "2.0.5"
     val catsRetry = "3.1.0"
     val log4cats = "2.6.0"
