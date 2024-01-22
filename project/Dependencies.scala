@@ -32,7 +32,7 @@ object Dependencies {
     val fs2Blobstore = "0.9.7"
     val fs2Cron = "0.7.2"
     val fs2PubSub = "0.21.0"
-    val fs2Kafka = "3.0.0"
+    val fs2Kafka = "3.0.1"
     val secretManager = "2.7.0"
     val gcpStorage = "2.16.0"
     val azureIdentity = "1.9.0"
