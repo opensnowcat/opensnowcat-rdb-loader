@@ -74,7 +74,8 @@ object RetryingTransactor {
   private def wrapResource[F[_]](
     config: Config.Retries,
     resource: Resource[F, Connection]
-  )(implicit F: MonadCancelThrow[F],
+  )(implicit
+    F: MonadCancelThrow[F],
     L: Logging[F],
     S: Sleep[Resource[F, *]],
     C: Clock[Resource[F, *]]

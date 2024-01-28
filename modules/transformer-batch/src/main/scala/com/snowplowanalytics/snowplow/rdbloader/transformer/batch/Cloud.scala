@@ -39,7 +39,11 @@ object Cloud {
   /** Common retry policy for S3 and SQS (jitter) */
   final val RetryPolicy =
     new RetryPolicy(
-      (_: AmazonWebServiceRequest, _: AmazonClientException, retriesAttempted: Int) => retriesAttempted < MaxRetries,
+      (
+        _: AmazonWebServiceRequest,
+        _: AmazonClientException,
+        retriesAttempted: Int
+      ) => retriesAttempted < MaxRetries,
       new PredefinedBackoffStrategies.FullJitterBackoffStrategy(RetryBaseDelay, RetryMaxDelay),
       MaxRetries,
       true

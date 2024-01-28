@@ -261,10 +261,12 @@ object StorageTarget {
           n =>
             n.toInt match {
               case Some(num) =>
-                ((props: Properties) => {
-                  props.setProperty(property, num.toString)
-                  ()
-                }).asRight
+                (
+                  (props: Properties) => {
+                    props.setProperty(property, num.toString)
+                    ()
+                  }
+                ).asRight
               case None => s"Impossible to apply JDBC property [$property] with value [${value.noSpaces}]".asLeft
             },
           s => ((props: Properties) => { props.setProperty(property, s); () }).asRight,
