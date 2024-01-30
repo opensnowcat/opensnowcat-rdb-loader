@@ -54,7 +54,7 @@ object Dependencies {
     val hadoopClient = "3.3.6"
     val hadoopGcpClient = "hadoop3-2.2.5"
     val parquetHadoop = "1.13.1"
-    val jsonSmart = "2.4.11" // Fix CVE
+    val jsonSmart = "2.5.0" // Fix CVE
     val nimbusJose = "9.31" // Fix CVE
     val snappyJava = "1.1.10.5" // Fix CVE
     val commonsText = "1.10.0" // Fix CVE
