@@ -33,12 +33,12 @@ object Dependencies {
     val fs2Cron = "0.7.2"
     val fs2PubSub = "0.21.0"
     val fs2Kafka = "3.2.0"
-    val secretManager = "2.33.0"
+    val secretManager = "2.34.0"
     val gcpStorage = "2.31.0"
     val azureIdentity = "1.9.0"
     val azureKeyVault = "4.6.2"
     val doobie = "1.0.0-RC5"
-    val monocle = "2.0.5"
+    val monocle = "2.1.0"
     val catsRetry = "3.1.0"
     val log4cats = "2.6.0"
     val http4s = "0.23.17"
@@ -54,7 +54,7 @@ object Dependencies {
     val hadoopClient = "3.3.6"
     val hadoopGcpClient = "hadoop3-2.2.5"
     val parquetHadoop = "1.13.1"
-    val jsonSmart = "2.4.11" // Fix CVE
+    val jsonSmart = "2.5.0" // Fix CVE
     val nimbusJose = "9.31" // Fix CVE
     val snappyJava = "1.1.10.5" // Fix CVE
     val commonsText = "1.10.0" // Fix CVE
@@ -62,20 +62,20 @@ object Dependencies {
 
     val slf4j = "2.0.11"
     val redshiftJdbc = "1.2.55.1083"
-    val snowflakeJdbc = "3.13.34"
+    val snowflakeJdbc = "3.14.5"
     val enumeratum = "1.7.3"
     val aws = "1.12.261"
     val aws2 = "2.18.41"
     val jSch = "0.2.16"
     val sentry = "1.7.30"
-    val protobuf = "3.21.12" // Fix CVE
+    val protobuf = "3.25.2" // Fix CVE
     val kinesisClient = "2.4.3"
     val nettyCodec = "4.1.106.Final" // Fix CVE
 
     // Scala (test only)
     val specs2 = "4.20.4"
     val catsTesting = "1.5.0"
-    val catsEffectTestkit = "3.4.11"
+    val catsEffectTestkit = "3.5.3"
     val scalaCheck = "1.17.0"
 
     val betterMonadicFor = "0.3.1"
