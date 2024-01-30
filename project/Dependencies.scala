@@ -68,7 +68,7 @@ object Dependencies {
     val aws2 = "2.18.41"
     val jSch = "0.2.16"
     val sentry = "1.7.30"
-    val protobuf = "3.21.12" // Fix CVE
+    val protobuf = "3.25.2" // Fix CVE
     val kinesisClient = "2.4.3"
     val nettyCodec = "4.1.106.Final" // Fix CVE
 
