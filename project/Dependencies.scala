@@ -65,7 +65,7 @@ object Dependencies {
     val snowflakeJdbc = "3.14.5"
     val enumeratum = "1.7.3"
     val aws = "1.12.646"
-    val aws2 = "2.18.41"
+    val aws2 = "2.23.17"
     val jSch = "0.2.16"
     val sentry = "1.7.30"
     val protobuf = "3.25.2" // Fix CVE
