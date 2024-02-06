@@ -73,11 +73,11 @@ CREATE TABLE IF NOT EXISTS atomic.events (
       refr_source                 VARCHAR(50),
       refr_term                   VARCHAR(255),
       -- Marketing
-      mkt_medium                  VARCHAR(255),
-      mkt_source                  VARCHAR(255),
-      mkt_term                    VARCHAR(255),
+      mkt_medium                  VARCHAR(500),
+      mkt_source                  VARCHAR(500),
+      mkt_term                    VARCHAR(500),
       mkt_content                 VARCHAR(500),
-      mkt_campaign                VARCHAR(255),
+      mkt_campaign                VARCHAR(500),
       -- Custom structured event
       se_category                 VARCHAR(1000),
       se_action                   VARCHAR(1000),
