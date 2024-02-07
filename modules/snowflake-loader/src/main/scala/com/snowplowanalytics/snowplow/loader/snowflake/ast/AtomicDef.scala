@@ -92,11 +92,11 @@ object AtomicDef {
     Column("refr_term", Varchar(Some(255))),
 
     // Marketing
-    Column("mkt_medium", Varchar(Some(255))),
-    Column("mkt_source", Varchar(Some(255))),
-    Column("mkt_term", Varchar(Some(255))),
+    Column("mkt_medium", Varchar(Some(500))),
+    Column("mkt_source", Varchar(Some(500))),
+    Column("mkt_term", Varchar(Some(500))),
     Column("mkt_content", Varchar(Some(500))),
-    Column("mkt_campaign", Varchar(Some(255))),
+    Column("mkt_campaign", Varchar(Some(500))),
 
     // Custom structured event
     Column("se_category", Varchar(Some(1000))),
