@@ -34,7 +34,7 @@ object Dependencies {
     val fs2PubSub = "0.21.0"
     val fs2Kafka = "3.2.0"
     val secretManager = "2.34.0"
-    val gcpStorage = "2.31.0"
+    val gcpStorage = "2.33.0"
     val azureIdentity = "1.9.0"
     val azureKeyVault = "4.6.2"
     val doobie = "1.0.0-RC5"
@@ -60,12 +60,12 @@ object Dependencies {
     val commonsText = "1.10.0" // Fix CVE
     val ivy = "2.5.2" // Fix CVE
 
-    val slf4j = "2.0.11"
+    val slf4j = "2.0.12"
     val redshiftJdbc = "1.2.55.1083"
     val snowflakeJdbc = "3.14.5"
     val enumeratum = "1.7.3"
     val aws = "1.12.656"
-    val aws2 = "2.23.17"
+    val aws2 = "2.23.21"
     val jSch = "0.2.16"
     val sentry = "1.7.30"
     val protobuf = "3.25.2" // Fix CVE
