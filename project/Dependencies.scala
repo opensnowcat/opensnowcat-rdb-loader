@@ -70,7 +70,7 @@ object Dependencies {
     val sentry = "1.7.30"
     val protobuf = "3.25.2" // Fix CVE
     val kinesisClient = "2.4.3"
-    val nettyCodec = "4.1.106.Final" // Fix CVE
+    val nettyCodec = "4.1.107.Final" // Fix CVE
 
     // Scala (test only)
     val specs2 = "4.20.4"
