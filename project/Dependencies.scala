@@ -32,7 +32,7 @@ object Dependencies {
     val fs2Blobstore = "0.9.7"
     val fs2Cron = "0.7.2"
     val fs2PubSub = "0.21.0"
-    val fs2Kafka = "3.2.0"
+    val fs2Kafka = "3.3.1"
     val secretManager = "2.35.0"
     val gcpStorage = "2.33.0"
     val azureIdentity = "1.9.0"
@@ -65,12 +65,12 @@ object Dependencies {
     val snowflakeJdbc = "3.14.5"
     val enumeratum = "1.7.3"
     val aws = "1.12.661"
-    val aws2 = "2.23.21"
+    val aws2 = "2.24.5"
     val jSch = "0.2.16"
     val sentry = "1.7.30"
-    val protobuf = "3.25.2" // Fix CVE
+    val protobuf = "3.25.3" // Fix CVE
     val kinesisClient = "2.4.3"
-    val nettyCodec = "4.1.106.Final" // Fix CVE
+    val nettyCodec = "4.1.107.Final" // Fix CVE
 
     // Scala (test only)
     val specs2 = "4.20.4"
