@@ -45,8 +45,13 @@ class BlobStorageSpec extends Specification with Tables {
         "s3://path1/path2/path3/runs" ! "s3://path1/path2/path3/runs/run_id" ! Some("run_id") |
         "s3://path1/path2/path3/runs/run_id" ! "s3://path1/path2/path3/runs/run_id" ! None |
         "s3://path1/path2/path3/runs/run_id/path4" ! "s3://path1/path2/path3/runs/run_id" ! None |
-        "s3://path1/path2/path4" ! "s3://path1/path2/path3/runs/run_id" ! None | { (parent, sub, diff) =>
-          BlobStorage.Folder.coerce(sub).diff(BlobStorage.Folder.coerce(parent)) must beEqualTo(diff)
+        "s3://path1/path2/path4" ! "s3://path1/path2/path3/runs/run_id" ! None | {
+          (
+            parent,
+            sub,
+            diff
+          ) =>
+            BlobStorage.Folder.coerce(sub).diff(BlobStorage.Folder.coerce(parent)) must beEqualTo(diff)
         }
     }
   }

@@ -63,9 +63,9 @@ object Retries {
    *   an exception that has been raised last time (a previous one could be different). It's
    *   generally a rule that these exception also pass Retry.isWorth predicate
    * @param attempts
-   *   amount of *total* attempts that were taked to load the folder,
-   * i.e. if loading failed 3 times within `Load`, added to retry queue, picked up by Load again and
-   * failed 3 times - it will be 6
+   *   amount of *total* attempts that were taked to load the folder, i.e. if loading failed 3 times
+   *   within `Load`, added to retry queue, picked up by Load again and failed 3 times - it will be
+   *   6
    * @param first
    *   timestamp of the first failure occured
    * @param last

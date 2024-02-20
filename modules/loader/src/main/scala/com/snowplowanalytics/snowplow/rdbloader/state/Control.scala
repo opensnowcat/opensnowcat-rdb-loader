@@ -91,7 +91,8 @@ case class Control[F[_]](private val state: State.Ref[F]) {
     base: BlobStorage.Folder
   )(
     error: Throwable
-  )(implicit C: Clock[F],
+  )(implicit
+    C: Clock[F],
     F: Monad[F]
   ): F[Boolean] =
     config match {
@@ -103,8 +104,8 @@ case class Control[F[_]](private val state: State.Ref[F]) {
   def removeFailure(base: BlobStorage.Folder): F[Unit] =
     state.update(original => original.copy(failures = original.failures - base))
 
-  def makePaused(
-    implicit F: Monad[F],
+  def makePaused(implicit
+    F: Monad[F],
     C: Clock[F],
     L: Logging[F]
   ): MakePaused[F] =
@@ -116,8 +117,8 @@ case class Control[F[_]](private val state: State.Ref[F]) {
       Resource.make(allocate)(_ => deallocate)
     }
 
-  def makeBusy(
-    implicit F: Monad[F],
+  def makeBusy(implicit
+    F: Monad[F],
     C: Clock[F],
     L: Logging[F]
   ): MakeBusy[F] =

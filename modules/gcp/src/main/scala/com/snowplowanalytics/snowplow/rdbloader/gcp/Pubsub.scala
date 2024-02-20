@@ -129,8 +129,12 @@ object Pubsub {
                          }
                        )
                      val errorHandler: (PubsubMessage, Throwable, F[Unit], F[Unit]) => F[Unit] = // Should be useless
-                       (message, error, _, _) =>
-                         Logger[F].error(s"Cannot decode message ${message.getMessageId} into array of bytes. ${error.getMessage}")
+                       (
+                         message,
+                         error,
+                         _,
+                         _
+                       ) => Logger[F].error(s"Cannot decode message ${message.getMessageId} into array of bytes. ${error.getMessage}")
 
                      // Ack deadline extension isn't needed in here because it is handled by the pubsub library
                      val stream = PubsubGoogleConsumer
