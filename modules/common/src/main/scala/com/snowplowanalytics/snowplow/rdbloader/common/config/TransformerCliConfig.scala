@@ -43,8 +43,13 @@ object TransformerCliConfig {
     .option[HoconOrPath]("config", "base64-encoded config HOCON", "c", "config.hocon")
 
   def rawConfigOpt: Opts[RawConfig] =
-    (igluConfigOpt, duplicatesOpt, configOpt).mapN { (iglu, dupeStorage, target) =>
-      RawConfig(iglu, dupeStorage, target)
+    (igluConfigOpt, duplicatesOpt, configOpt).mapN {
+      (
+        iglu,
+        dupeStorage,
+        target
+      ) =>
+        RawConfig(iglu, dupeStorage, target)
     }
 
   def command(name: String, description: String): Command[RawConfig] =
