@@ -31,7 +31,11 @@ class ParquetFieldsProviderSpec extends Specification with Tables {
           List((1, 0, 0), (1, 0, 1), (1, 1, 0)) ! "contexts_com_snowplowanalytics_snowplow_test_schema_1" ! DdlTypes.schema110 |
           List((1, 0, 0), (1, 1, 0)) ! "contexts_com_snowplowanalytics_snowplow_test_schema_1" ! DdlTypes.schema110 |
           List((2, 0, 0)) ! "contexts_com_snowplowanalytics_snowplow_test_schema_2" ! DdlTypes.schema200 | {
-            (versions, expectedName, expectedElementType) =>
+            (
+              versions,
+              expectedName,
+              expectedElementType
+            ) =>
               assertOneField(
                 versions,
                 entity = Context,
@@ -48,7 +52,11 @@ class ParquetFieldsProviderSpec extends Specification with Tables {
           List((1, 0, 0), (1, 0, 1), (1, 1, 0)) ! "unstruct_event_com_snowplowanalytics_snowplow_test_schema_1" ! DdlTypes.schema110 |
           List((1, 0, 0), (1, 1, 0)) ! "unstruct_event_com_snowplowanalytics_snowplow_test_schema_1" ! DdlTypes.schema110 |
           List((2, 0, 0)) ! "unstruct_event_com_snowplowanalytics_snowplow_test_schema_2" ! DdlTypes.schema200 | {
-            (versions, expectedName, expectedElementType) =>
+            (
+              versions,
+              expectedName,
+              expectedElementType
+            ) =>
               assertOneField(
                 versions,
                 entity = SelfDescribingEvent,
