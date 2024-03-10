@@ -25,7 +25,7 @@ object Dependencies {
     val circe = "0.14.1"
     val circeConfig = "0.10.1"
     val cats = "2.2.0"
-    val catsEffect = "3.5.3"
+    val catsEffect = "3.5.4"
     val manifest = "0.3.0"
     val fs2 = "3.3.0"
     val fs2Aws = "4.1.0"
