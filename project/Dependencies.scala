@@ -48,7 +48,7 @@ object Dependencies {
     val spark = "3.3.1"
     val eventsManifest = "0.4.0"
     val schemaDdl = "0.18.2"
-    val jacksonModule = "2.16.2" // Override incompatible version in spark runtime
+    val jacksonModule = "2.17.0" // Override incompatible version in spark runtime
     val jacksonDatabind = "2.14.3"
     val parquet4s = "2.10.1"
     val hadoopClient = "3.3.6"
