@@ -34,12 +34,12 @@ object Dependencies {
     val fs2PubSub = "0.21.0"
     val fs2Kafka = "3.3.1"
     val secretManager = "2.37.0"
-    val gcpStorage = "2.35.0"
+    val gcpStorage = "2.36.0"
     val azureIdentity = "1.9.0"
     val azureKeyVault = "4.6.2"
     val doobie = "1.0.0-RC5"
     val monocle = "2.1.0"
-    val catsRetry = "3.1.0"
+    val catsRetry = "3.1.3"
     val log4cats = "2.6.0"
     val http4s = "0.23.17"
     val http4sBlaze = "0.23.14" // this dep fell out of sync with http4s-core versioning - 0.23.14 is the last 0.X release.
@@ -48,7 +48,7 @@ object Dependencies {
     val spark = "3.3.1"
     val eventsManifest = "0.4.0"
     val schemaDdl = "0.18.2"
-    val jacksonModule = "2.16.2" // Override incompatible version in spark runtime
+    val jacksonModule = "2.17.0" // Override incompatible version in spark runtime
     val jacksonDatabind = "2.17.0"
     val parquet4s = "2.10.1"
     val hadoopClient = "3.3.6"
@@ -65,17 +65,17 @@ object Dependencies {
     val snowflakeJdbc = "3.15.0"
     val enumeratum = "1.7.3"
     val aws = "1.12.676"
-    val aws2 = "2.25.6"
+    val aws2 = "2.25.11"
     val jSch = "0.2.17"
     val sentry = "1.7.30"
-    val protobuf = "3.25.3" // Fix CVE
+    val protobuf = "4.26.0" // Fix CVE
     val kinesisClient = "2.4.3"
     val nettyCodec = "4.1.107.Final" // Fix CVE
 
     // Scala (test only)
     val specs2 = "4.20.4"
     val catsTesting = "1.5.0"
-    val catsEffectTestkit = "3.5.3"
+    val catsEffectTestkit = "3.5.4"
     val scalaCheck = "1.17.0"
 
     val betterMonadicFor = "0.3.1"
