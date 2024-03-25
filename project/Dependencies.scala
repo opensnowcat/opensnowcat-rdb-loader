@@ -34,7 +34,7 @@ object Dependencies {
     val fs2PubSub = "0.21.0"
     val fs2Kafka = "3.3.1"
     val secretManager = "2.38.0"
-    val gcpStorage = "2.36.0"
+    val gcpStorage = "2.36.1"
     val azureIdentity = "1.9.0"
     val azureKeyVault = "4.6.2"
     val doobie = "1.0.0-RC5"
@@ -51,10 +51,10 @@ object Dependencies {
     val jacksonModule = "2.17.0" // Override incompatible version in spark runtime
     val jacksonDatabind = "2.17.0"
     val parquet4s = "2.10.1"
-    val hadoopClient = "3.3.6"
+    val hadoopClient = "3.4.0"
     val hadoopGcpClient = "hadoop3-2.2.5"
     val parquetHadoop = "1.13.1"
-    val jsonSmart = "2.5.0" // Fix CVE
+    val jsonSmart = "2.5.1" // Fix CVE
     val nimbusJose = "9.31" // Fix CVE
     val snappyJava = "1.1.10.5" // Fix CVE
     val commonsText = "1.10.0" // Fix CVE
@@ -65,12 +65,12 @@ object Dependencies {
     val snowflakeJdbc = "3.15.0"
     val enumeratum = "1.7.3"
     val aws = "1.12.676"
-    val aws2 = "2.25.11"
+    val aws2 = "2.25.16"
     val jSch = "0.2.17"
     val sentry = "1.7.30"
     val protobuf = "4.26.0" // Fix CVE
     val kinesisClient = "2.4.3"
-    val nettyCodec = "4.1.107.Final" // Fix CVE
+    val nettyCodec = "4.1.108.Final" // Fix CVE
 
     // Scala (test only)
     val specs2 = "4.20.4"
