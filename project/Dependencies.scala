@@ -33,7 +33,7 @@ object Dependencies {
     val fs2Cron = "0.7.2"
     val fs2PubSub = "0.21.0"
     val fs2Kafka = "3.3.1"
-    val secretManager = "2.37.0"
+    val secretManager = "2.38.0"
     val gcpStorage = "2.36.1"
     val azureIdentity = "1.9.0"
     val azureKeyVault = "4.6.2"
