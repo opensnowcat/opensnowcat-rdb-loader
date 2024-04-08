@@ -1,7 +1,7 @@
 logLevel := Level.Warn
 
 addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.10")
-addSbtPlugin("org.typelevel" % "sbt-tpolecat" % "0.5.0")
+addSbtPlugin("org.typelevel" % "sbt-tpolecat" % "0.5.1")
 addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.10.0-RC1")
 addSbtPlugin("org.scoverage" % "sbt-coveralls" % "1.3.11")
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.9.3")
