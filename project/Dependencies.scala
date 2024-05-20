@@ -55,17 +55,17 @@ object Dependencies {
     val hadoopGcpClient = "hadoop3-2.2.5"
     val parquetHadoop = "1.13.1"
     val jsonSmart = "2.5.1" // Fix CVE
-    val nimbusJose = "9.39" // Fix CVE
+    val nimbusJose = "9.39.1" // Fix CVE
     val snappyJava = "1.1.10.5" // Fix CVE
     val commonsText = "1.10.0" // Fix CVE
     val ivy = "2.5.2" // Fix CVE
 
     val slf4j = "2.0.13"
     val redshiftJdbc = "1.2.55.1083"
-    val snowflakeJdbc = "3.15.1"
+    val snowflakeJdbc = "3.16.0"
     val enumeratum = "1.7.3"
-    val aws = "1.12.701"
-    val aws2 = "2.25.31"
+    val aws = "1.12.725"
+    val aws2 = "2.25.55"
     val jSch = "0.2.17"
     val sentry = "1.7.30"
     val protobuf = "4.26.1" // Fix CVE
