@@ -76,7 +76,7 @@ object Dependencies {
     val specs2 = "4.20.6"
     val catsTesting = "1.5.0"
     val catsEffectTestkit = "3.5.4"
-    val scalaCheck = "1.17.0"
+    val scalaCheck = "1.17.1"
 
     val betterMonadicFor = "0.3.1"
   }
