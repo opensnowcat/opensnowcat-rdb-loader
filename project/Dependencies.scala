@@ -57,7 +57,7 @@ object Dependencies {
     val jsonSmart = "2.5.1" // Fix CVE
     val nimbusJose = "9.39.1" // Fix CVE
     val snappyJava = "1.1.10.5" // Fix CVE
-    val commonsText = "1.10.0" // Fix CVE
+    val commonsText = "1.12.0" // Fix CVE
     val ivy = "2.5.2" // Fix CVE
 
     val slf4j = "2.0.13"
