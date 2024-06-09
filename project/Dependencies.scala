@@ -66,7 +66,7 @@ object Dependencies {
     val enumeratum = "1.7.3"
     val aws = "1.12.730"
     val aws2 = "2.25.60"
-    val jSch = "0.2.17"
+    val jSch = "0.2.18"
     val sentry = "1.7.30"
     val protobuf = "4.27.0" // Fix CVE
     val kinesisClient = "2.4.3"
