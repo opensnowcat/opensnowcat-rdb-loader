@@ -73,7 +73,7 @@ object Dependencies {
     val nettyCodec = "4.1.110.Final" // Fix CVE
 
     // Scala (test only)
-    val specs2 = "4.20.6"
+    val specs2 = "4.20.8"
     val catsTesting = "1.5.0"
     val catsEffectTestkit = "3.5.4"
     val scalaCheck = "1.17.1"
