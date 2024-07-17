@@ -17,7 +17,7 @@ object Dependencies {
   object V {
     // Scala (Loader)
     val decline = "2.4.1"
-    val igluClient = "3.1.0"
+    val igluClient = "3.1.1"
     val igluCore = "1.1.1"
     val badrows = "2.2.0"
     val analyticsSdk = "3.1.0"
@@ -48,7 +48,7 @@ object Dependencies {
     val spark = "3.3.1"
     val eventsManifest = "0.4.0"
     val schemaDdl = "0.18.2"
-    val jacksonModule = "2.17.1" // Override incompatible version in spark runtime
+    val jacksonModule = "2.17.2" // Override incompatible version in spark runtime
     val jacksonDatabind = "2.17.2"
     val parquet4s = "2.10.1"
     val hadoopClient = "3.4.0"
@@ -63,8 +63,8 @@ object Dependencies {
     val slf4j = "2.0.13"
     val redshiftJdbc = "1.2.55.1083"
     val snowflakeJdbc = "3.16.0"
-    val enumeratum = "1.7.3"
-    val aws = "1.12.730"
+    val enumeratum = "1.7.4"
+    val aws = "1.12.761"
     val aws2 = "2.25.60"
     val jSch = "0.2.17"
     val sentry = "1.7.30"
@@ -73,7 +73,7 @@ object Dependencies {
     val nettyCodec = "4.1.110.Final" // Fix CVE
 
     // Scala (test only)
-    val specs2 = "4.20.6"
+    val specs2 = "4.20.8"
     val catsTesting = "1.5.0"
     val catsEffectTestkit = "3.5.4"
     val scalaCheck = "1.17.1"
