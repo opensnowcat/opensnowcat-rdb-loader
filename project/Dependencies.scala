@@ -17,7 +17,7 @@ object Dependencies {
   object V {
     // Scala (Loader)
     val decline = "2.4.1"
-    val igluClient = "3.1.0"
+    val igluClient = "3.1.1"
     val igluCore = "1.1.1"
     val badrows = "2.2.0"
     val analyticsSdk = "3.1.0"
@@ -34,7 +34,7 @@ object Dependencies {
     val fs2PubSub = "0.22.1"
     val fs2Kafka = "3.4.0"
     val secretManager = "2.46.0"
-    val gcpStorage = "2.39.0"
+    val gcpStorage = "2.40.1"
     val azureIdentity = "1.9.0"
     val azureKeyVault = "4.6.2"
     val doobie = "1.0.0-RC5"
@@ -48,8 +48,8 @@ object Dependencies {
     val spark = "3.3.1"
     val eventsManifest = "0.4.0"
     val schemaDdl = "0.18.2"
-    val jacksonModule = "2.17.1" // Override incompatible version in spark runtime
-    val jacksonDatabind = "2.17.1"
+    val jacksonModule = "2.17.2" // Override incompatible version in spark runtime
+    val jacksonDatabind = "2.17.2"
     val parquet4s = "2.10.1"
     val hadoopClient = "3.4.0"
     val hadoopGcpClient = "hadoop3-2.2.5"
@@ -63,17 +63,17 @@ object Dependencies {
     val slf4j = "2.0.13"
     val redshiftJdbc = "1.2.55.1083"
     val snowflakeJdbc = "3.16.0"
-    val enumeratum = "1.7.3"
-    val aws = "1.12.730"
+    val enumeratum = "1.7.4"
+    val aws = "1.12.761"
     val aws2 = "2.25.60"
     val jSch = "0.2.17"
     val sentry = "1.7.30"
-    val protobuf = "4.27.0" // Fix CVE
+    val protobuf = "4.27.2" // Fix CVE
     val kinesisClient = "2.4.3"
     val nettyCodec = "4.1.110.Final" // Fix CVE
 
     // Scala (test only)
-    val specs2 = "4.20.6"
+    val specs2 = "4.20.8"
     val catsTesting = "1.5.0"
     val catsEffectTestkit = "3.5.4"
     val scalaCheck = "1.17.1"
