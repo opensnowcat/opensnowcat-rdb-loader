@@ -56,7 +56,7 @@ object Dependencies {
     val parquetHadoop = "1.13.1"
     val jsonSmart = "2.5.1" // Fix CVE
     val nimbusJose = "9.40" // Fix CVE
-    val snappyJava = "1.1.10.5" // Fix CVE
+    val snappyJava = "1.1.10.6" // Fix CVE
     val commonsText = "1.12.0" // Fix CVE
     val ivy = "2.5.2" // Fix CVE
 
