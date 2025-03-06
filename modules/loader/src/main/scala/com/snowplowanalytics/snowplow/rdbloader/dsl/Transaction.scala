@@ -15,21 +15,26 @@ package com.snowplowanalytics.snowplow.rdbloader.dsl
 import cats.~>
 import cats.arrow.FunctionK
 import cats.implicits._
-
 import cats.effect.{Async, Resource, Sync}
 import cats.effect.kernel.Spawn
 import cats.effect.std.Dispatcher
 import doobie._
-import doobie.free.connection.{isValid => cxnIsValid, setAutoCommit, unit => cxnUnit}
+import doobie.free.connection.{setAutoCommit, isValid => cxnIsValid, unit => cxnUnit}
 import doobie.implicits._
 import doobie.util.transactor.Strategy
 import doobie.hikari._
 import com.zaxxer.hikari.HikariConfig
 import retry.Sleep
-
 import com.snowplowanalytics.snowplow.rdbloader.config.{Config, StorageTarget}
 import com.snowplowanalytics.snowplow.rdbloader.transactors.{RetryingTransactor, SSH}
 import com.snowplowanalytics.snowplow.rdbloader.common.cloud.SecretStore
+import net.snowflake.client.jdbc.SnowflakeBasicDataSource
+import org.typelevel.log4cats.Logger
+import org.typelevel.log4cats.slf4j.Slf4jLogger
+
+import java.security.KeyFactory
+import java.security.spec.PKCS8EncodedKeySpec
+import java.util.Base64
 
 /**
  * An algebra responsible for executing effect `C` (typically coming from [[DAO]], which itself is a
@@ -43,9 +48,9 @@ import com.snowplowanalytics.snowplow.rdbloader.common.cloud.SecretStore
  * interpreters. And those effects do not have transactional semantics
  *
  * @tparam F
- *   transaction IO effect
+ * transaction IO effect
  * @tparam C
- *   DB-interaction effect
+ * DB-interaction effect
  */
 trait Transaction[F[_], C[_]] {
 
@@ -101,24 +106,61 @@ object Transaction {
       ds.setDataSourceProperties(target.properties)
     }
 
+  def getPrivateKeyFromPem(pem: String, keyType: String): java.security.PrivateKey = {
+    val privateKeyPEM = pem.replace("-----BEGIN PRIVATE KEY-----", "").replace("-----END PRIVATE KEY-----", "")
+      .replace("-----BEGIN ENCRYPTED PRIVATE KEY-----", "").replace("-----END ENCRYPTED PRIVATE KEY-----", "").replaceAll("\\s", "")
+    val encoded = Base64.getDecoder.decode(privateKeyPEM)
+    val keyFactory = KeyFactory.getInstance(keyType)
+    val keySpec = new PKCS8EncodedKeySpec(encoded)
+    keyFactory.generatePrivate(keySpec)
+  }
+
   def buildPool[F[_]: Async: SecretStore: Logging: Sleep](
     target: StorageTarget,
     retries: Config.Retries
-  ): Resource[F, Transactor[F]] =
-    for {
-      ce <- ExecutionContexts.fixedThreadPool[F](2)
-      password <- target.password match {
-                    case StorageTarget.PasswordConfig.PlainText(text) =>
-                      Resource.pure[F, String](text)
-                    case StorageTarget.PasswordConfig.EncryptedKey(StorageTarget.EncryptedConfig(parameterName)) =>
-                      Resource.eval(SecretStore[F].getValue(parameterName))
-                  }
-      xa <- HikariTransactor
-              .newHikariTransactor[F](target.driver, target.connectionUrl, target.username, password, ce)
-      _ <- Resource.eval(xa.configure(configureHikari[F](target, _)))
-      xa <- Resource.pure(RetryingTransactor.wrap(retries, xa))
-      xa <- target.sshTunnel.fold(Resource.pure[F, Transactor[F]](xa))(SSH.transactor(_, xa))
-    } yield xa
+  ): Resource[F, Transactor[F]] = {
+    target match {
+      case StorageTarget.Snowflake(_,_,_,_,privateKey,_,_,_,_,_,_,_,_,_,_) =>
+        for {
+          ce <- ExecutionContexts.fixedThreadPool[F](2)
+          privateKeyEncoded <- privateKey.key match {
+            case StorageTarget.PrivateKeyConfig.PlainText(text) =>
+              Resource.pure[F, String](text)
+            case StorageTarget.PrivateKeyConfig.EncryptedKey(StorageTarget.EncryptedConfig(parameterName)) =>
+              Resource.eval(SecretStore[F].getValue(parameterName))
+          }
+          hikariConfig <- Resource.pure[F, HikariConfig] ({
+            val hikariConfig = new HikariConfig
+            val snowflakeDataSource = new SnowflakeBasicDataSource
+            snowflakeDataSource.setUrl(target.connectionUrl)
+            snowflakeDataSource.setPrivateKey(getPrivateKeyFromPem(privateKeyEncoded, privateKey.keyType))
+            snowflakeDataSource.setUser(target.username)
+            hikariConfig.setDataSource(snowflakeDataSource)
+            hikariConfig
+          })
+          _ <- Resource.eval(configureHikari[F](target, hikariConfig))
+          xa <- HikariTransactor.fromHikariConfigCustomEc(hikariConfig, ce)
+          xa <- Resource.pure(RetryingTransactor.wrap(retries, xa))
+          xa <- target.sshTunnel.fold(Resource.pure[F, Transactor[F]](xa))(SSH.transactor(_, xa))
+        } yield xa
+      case _ => for {
+        ce <- ExecutionContexts.fixedThreadPool[F](2)
+        password <- target.password match {
+          case StorageTarget.PasswordConfig.PlainText(text) =>
+            Resource.pure[F, String](text)
+          case StorageTarget.PasswordConfig.EncryptedKey(StorageTarget.EncryptedConfig(parameterName)) =>
+            Resource.eval(SecretStore[F].getValue(parameterName))
+        }
+        xa <- HikariTransactor
+          .newHikariTransactor[F](target.driver, target.connectionUrl, target.username, password, ce)
+        _ <- Resource.eval(xa.configure(configureHikari[F](target, _)))
+        xa <- Resource.pure(RetryingTransactor.wrap(retries, xa))
+        xa <- target.sshTunnel.fold(Resource.pure[F, Transactor[F]](xa))(SSH.transactor(_, xa))
+      } yield xa
+
+    }
+
+  }
 
   /**
    * Build a necessary (dry-run or real-world) DB interpreter as a `Resource`, which guarantees to

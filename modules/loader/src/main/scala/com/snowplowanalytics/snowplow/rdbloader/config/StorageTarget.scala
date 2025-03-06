@@ -12,7 +12,7 @@
  */
 package com.snowplowanalytics.snowplow.rdbloader.config
 
-import java.util.{Base64, Properties}
+import java.util.Properties
 import cats.data._
 import cats.implicits._
 import io.circe._
@@ -23,8 +23,6 @@ import com.snowplowanalytics.snowplow.rdbloader.common.config.StringEnum
 import com.snowplowanalytics.snowplow.rdbloader.common.cloud.BlobStorage
 import com.snowplowanalytics.snowplow.rdbloader.dsl.Transaction
 
-import java.security.spec.PKCS8EncodedKeySpec
-import java.security.KeyFactory
 import scala.concurrent.duration.{Duration, FiniteDuration}
 
 /**
@@ -171,7 +169,6 @@ object StorageTarget {
       props.put("db", database)
       props.put("application", appName)
       props.put("timezone", "UTC")
-      props.put("privateKey", privateKey.toPrivateKey)
       role.foreach(r => props.put("role", r))
       props
     }
@@ -390,20 +387,7 @@ object StorageTarget {
     }
   }
 
-  case class PrivateKey(key: PrivateKeyConfig, keyType: String) {
-    def toPrivateKey: java.security.PrivateKey = {
-      val pem = key.getUnencrypted
-      getPrivateKeyFromPem(pem, keyType)
-    }
-
-    def getPrivateKeyFromPem(pem: String, keyType: String): java.security.PrivateKey = {
-      val privateKeyPEM = pem.replace("-----BEGIN PRIVATE KEY-----", "").replace("-----END PRIVATE KEY-----", "").replaceAll("\\s", "")
-      val encoded = Base64.getDecoder.decode(privateKeyPEM)
-      val keyFactory = KeyFactory.getInstance(keyType)
-      val keySpec = new PKCS8EncodedKeySpec(encoded)
-      keyFactory.generatePrivate(keySpec)
-    }
-  }
+  case class PrivateKey(key: PrivateKeyConfig, keyType: String)
 
   object PrivateKey {
     implicit def privateKeyDecoder: Decoder[PrivateKey] =
