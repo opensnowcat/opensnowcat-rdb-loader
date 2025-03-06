@@ -11,6 +11,10 @@
     "snowflakeRegion": "us-west-2",
     "username": "admin",
     "password": "Supersecret1",
+    "privateKey": {
+        "key": "PRIVATE_KEY",
+        "keyType": "RSA"
+    },
     "account": "acme",
     "warehouse": "wh",
     "schema": "atomic",

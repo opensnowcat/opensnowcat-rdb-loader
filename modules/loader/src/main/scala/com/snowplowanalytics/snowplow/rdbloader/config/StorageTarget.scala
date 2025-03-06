@@ -12,21 +12,19 @@
  */
 package com.snowplowanalytics.snowplow.rdbloader.config
 
-import java.util.Properties
-
+import java.util.{Base64, Properties}
 import cats.data._
 import cats.implicits._
-
 import io.circe._
 import io.circe.Decoder._
 import io.circe.generic.semiauto._
-
 import doobie.util.transactor.Strategy
-
 import com.snowplowanalytics.snowplow.rdbloader.common.config.StringEnum
 import com.snowplowanalytics.snowplow.rdbloader.common.cloud.BlobStorage
 import com.snowplowanalytics.snowplow.rdbloader.dsl.Transaction
 
+import java.security.spec.PKCS8EncodedKeySpec
+import java.security.KeyFactory
 import scala.concurrent.duration.{Duration, FiniteDuration}
 
 /**
@@ -143,6 +141,7 @@ object StorageTarget {
     username: String,
     role: Option[String],
     password: PasswordConfig,
+    privateKey: PrivateKey,
     account: Option[String],
     warehouse: String,
     database: String,
@@ -172,6 +171,7 @@ object StorageTarget {
       props.put("db", database)
       props.put("application", appName)
       props.put("timezone", "UTC")
+      props.put("privateKey", privateKey.toPrivateKey)
       role.foreach(r => props.put("role", r))
       props
     }
@@ -369,6 +369,45 @@ object StorageTarget {
           case None => hCursor.as[EncryptedConfig].map(PasswordConfig.EncryptedKey)
         }
     }
+  }
+
+  sealed trait PrivateKeyConfig extends Product with Serializable {
+    def getUnencrypted: String = this match {
+      case PrivateKeyConfig.PlainText(plain) => plain
+      case PrivateKeyConfig.EncryptedKey(EncryptedConfig(parameterName)) => parameterName
+    }
+  }
+  object PrivateKeyConfig {
+    final case class PlainText(value: String) extends PrivateKeyConfig
+    final case class EncryptedKey(value: EncryptedConfig) extends PrivateKeyConfig
+
+    implicit object PrivateDecoder extends Decoder[PrivateKeyConfig] {
+      def apply(hCursor: HCursor): Decoder.Result[PrivateKeyConfig] =
+        hCursor.value.asString match {
+          case Some(s) => Right(PrivateKeyConfig.PlainText(s))
+          case None => hCursor.as[EncryptedConfig].map(PrivateKeyConfig.EncryptedKey)
+        }
+    }
+  }
+
+  case class PrivateKey(key: PrivateKeyConfig, keyType: String) {
+    def toPrivateKey: java.security.PrivateKey = {
+      val pem = key.getUnencrypted
+      getPrivateKeyFromPem(pem, keyType)
+    }
+
+    def getPrivateKeyFromPem(pem: String, keyType: String): java.security.PrivateKey = {
+      val privateKeyPEM = pem.replace("-----BEGIN PRIVATE KEY-----", "").replace("-----END PRIVATE KEY-----", "").replaceAll("\\s", "")
+      val encoded = Base64.getDecoder.decode(privateKeyPEM)
+      val keyFactory = KeyFactory.getInstance(keyType)
+      val keySpec = new PKCS8EncodedKeySpec(encoded)
+      keyFactory.generatePrivate(keySpec)
+    }
+  }
+
+  object PrivateKey {
+    implicit def privateKeyDecoder: Decoder[PrivateKey] =
+      deriveDecoder[PrivateKey]
   }
 
   sealed trait LoadAuthMethod extends Product with Serializable

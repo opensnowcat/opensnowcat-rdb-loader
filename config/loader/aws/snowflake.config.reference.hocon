@@ -27,7 +27,17 @@
         "parameterName": "snowplow.snowflake.password"
       }
     },
-
+    # DB private key
+    "privateKey": {
+        # Private key
+        "key": {
+          "secretStore": {
+                  "parameterName": "snowplow.snowflake.privateKey"
+                }
+        },
+        #Encryption method
+        "keyType": "RSA"
+    },
     # Snowflake account
     "account": "acme",
     # A warehouse to use for loading
