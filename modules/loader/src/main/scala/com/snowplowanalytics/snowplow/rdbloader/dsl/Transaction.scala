@@ -29,8 +29,6 @@ import com.snowplowanalytics.snowplow.rdbloader.config.{Config, StorageTarget}
 import com.snowplowanalytics.snowplow.rdbloader.transactors.{RetryingTransactor, SSH}
 import com.snowplowanalytics.snowplow.rdbloader.common.cloud.SecretStore
 import net.snowflake.client.jdbc.SnowflakeBasicDataSource
-import org.typelevel.log4cats.Logger
-import org.typelevel.log4cats.slf4j.Slf4jLogger
 
 import java.security.KeyFactory
 import java.security.spec.PKCS8EncodedKeySpec
@@ -120,7 +118,7 @@ object Transaction {
     retries: Config.Retries
   ): Resource[F, Transactor[F]] = {
     target match {
-      case StorageTarget.Snowflake(_,_,_,_,privateKey,_,_,_,_,_,_,_,_,_,_) =>
+      case StorageTarget.Snowflake(_,_,role,_,privateKey,_,warehouse,database,schema,_,_,_,_,_,_) =>
         for {
           ce <- ExecutionContexts.fixedThreadPool[F](2)
           privateKeyEncoded <- privateKey.key match {
@@ -135,6 +133,10 @@ object Transaction {
             snowflakeDataSource.setUrl(target.connectionUrl)
             snowflakeDataSource.setPrivateKey(getPrivateKeyFromPem(privateKeyEncoded, privateKey.keyType))
             snowflakeDataSource.setUser(target.username)
+            snowflakeDataSource.setDatabaseName(database)
+            snowflakeDataSource.setWarehouse(warehouse)
+            snowflakeDataSource.setSchema(schema)
+            role.foreach(snowflakeDataSource.setRole)
             hikariConfig.setDataSource(snowflakeDataSource)
             hikariConfig
           })
