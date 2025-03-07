@@ -280,7 +280,8 @@ object Dependencies {
     scalaCheck,
     catsEffectLaws,
     catsTesting,
-    catsEffectTestkit
+    catsEffectTestkit,
+    snowflakeJdbc
   )
 
   val redshiftDependencies = Seq(

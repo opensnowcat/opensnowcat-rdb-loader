@@ -186,6 +186,7 @@ object ConfigSpec {
     "admin",
     None,
     StorageTarget.PasswordConfig.PlainText("Supersecret1"),
+    StorageTarget.PrivateKey(StorageTarget.PrivateKeyConfig.PlainText("PRIVATE_KEY"), "RSA"),
     Some("acme"),
     "wh",
     "snowplow",
