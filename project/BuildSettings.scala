@@ -63,6 +63,8 @@ object BuildSettings {
     jarName,
     assembly / assemblyMergeStrategy := {
       case x if x.endsWith("module-info.class") => MergeStrategy.discard
+      case PathList("org", "apache", "hadoop", "security", "authentication", "server", "package-info.class") => MergeStrategy.discard
+      case PathList("META-INF", "FastDoubleParser-NOTICE") => MergeStrategy.discard      
       case PathList("org", "apache", "commons", "logging", _ @_*) => MergeStrategy.first
       case PathList("META-INF", "MANIFEST.MF") => MergeStrategy.discard
       case PathList("META-INF", "io.netty.versions.properties") => MergeStrategy.discard
