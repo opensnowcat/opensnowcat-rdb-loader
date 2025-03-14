@@ -1,4 +1,8 @@
+1.0.1 (2025-03-13)
+------------------
+- Added support for authentication with private key for Snowflake.
+
 1.0.0 (2024-01-21)
 ------------------
-Updated README
-Fork from https://github.com/snowplow/snowplow-rdb-loader/commit/724129672cdc2cacf2e3b07ed2a2096b43e52701
+- Updated README
+- Fork from https://github.com/snowplow/snowplow-rdb-loader/commit/724129672cdc2cacf2e3b07ed2a2096b43e52701
