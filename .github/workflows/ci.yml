@@ -20,6 +20,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Install sbt
+        run: |
+          echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | sudo tee /etc/apt/sources.list.d/sbt.list
+          curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x99e82a75642ac823" | sudo apt-key add
+          sudo apt-get update
+          sudo apt-get install sbt          
       - name: Check Scala formatting
         if: ${{ always() }}
         run: sbt scalafmtCheckAll
