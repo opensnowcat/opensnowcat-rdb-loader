@@ -31,7 +31,10 @@ class ConfigSpec extends Specification {
   "fromString" should {
     "be able to parse extended AWS Snowflake Loader config" in {
       val storage = exampleSnowflake
-        .copy(privateKey = StorageTarget.PrivateKey(StorageTarget.PrivateKeyConfig.EncryptedKey(StorageTarget.EncryptedConfig("snowplow.snowflake.privateKey")), "RSA"))
+        .copy(privateKey =
+          StorageTarget
+            .PrivateKey(StorageTarget.PrivateKeyConfig.EncryptedKey(StorageTarget.EncryptedConfig("snowplow.snowflake.privateKey")), "RSA")
+        )
         .copy(password = StorageTarget.PasswordConfig.EncryptedKey(StorageTarget.EncryptedConfig("snowplow.snowflake.password")))
         .copy(jdbcHost = Some("acme.eu-central-1.snowflake.com"))
         .copy(folderMonitoringStage = Some(StorageTarget.Snowflake.Stage("snowplow_folders_stage", None)))
@@ -56,7 +59,10 @@ class ConfigSpec extends Specification {
 
     "be able to parse extended GCP Snowflake Loader config" in {
       val storage = exampleSnowflake
-        .copy(privateKey = StorageTarget.PrivateKey(StorageTarget.PrivateKeyConfig.EncryptedKey(StorageTarget.EncryptedConfig("snowplow.snowflake.privateKey")), "RSA"))
+        .copy(privateKey =
+          StorageTarget
+            .PrivateKey(StorageTarget.PrivateKeyConfig.EncryptedKey(StorageTarget.EncryptedConfig("snowplow.snowflake.privateKey")), "RSA")
+        )
         .copy(password = StorageTarget.PasswordConfig.EncryptedKey(StorageTarget.EncryptedConfig("snowplow.snowflake.password")))
         .copy(jdbcHost = Some("acme.eu-central-1.snowflake.com"))
         .copy(folderMonitoringStage = Some(StorageTarget.Snowflake.Stage("snowplow_folders_stage", None)))
@@ -98,7 +104,10 @@ class ConfigSpec extends Specification {
 
     "be able to parse extended Azure Snowflake Loader config" in {
       val storage = exampleSnowflake
-        .copy(privateKey = StorageTarget.PrivateKey(StorageTarget.PrivateKeyConfig.EncryptedKey(StorageTarget.EncryptedConfig("snowplow.snowflake.privateKey")), "RSA"))
+        .copy(privateKey =
+          StorageTarget
+            .PrivateKey(StorageTarget.PrivateKeyConfig.EncryptedKey(StorageTarget.EncryptedConfig("snowplow.snowflake.privateKey")), "RSA")
+        )
         .copy(password = StorageTarget.PasswordConfig.EncryptedKey(StorageTarget.EncryptedConfig("snowplow.snowflake.password")))
         .copy(jdbcHost = Some("acme.eu-central-1.snowflake.com"))
         .copy(folderMonitoringStage = Some(StorageTarget.Snowflake.Stage("snowplow_folders_stage", None)))
