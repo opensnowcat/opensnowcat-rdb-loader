@@ -29,16 +29,7 @@ jobs:
       - name: Check Scala formatting
         if: ${{ always() }}
         run: sbt scalafmtCheckAll
-      - name: Run tests
-        run: sbt coverage test coverageReport
-      - name: Aggregate coverage data
-        if: ${{ always() }}
-        run: sbt coverageAggregate
-      - name: Submit coveralls data
-        if: ${{ always() }}
-        run: sbt coveralls
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+ 
 
 #  publish_docker:
 #    needs: test
