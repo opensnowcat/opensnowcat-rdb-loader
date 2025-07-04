@@ -82,8 +82,9 @@ object Dependencies {
   }
 
   val resolutionRepos = Seq(
+    "redshift-release" at "https://s3.amazonaws.com/redshift-maven-repository/release/",
     // Redshift native driver
-    ("redshift" at "http://redshift-maven-repository.s3-website-us-east-1.amazonaws.com/release").withAllowInsecureProtocol(true)
+    ("redshift" at "http://redshift-maven-repository.s3-website-us-east-1.amazonaws.com/release").withAllowInsecureProtocol(true),
   )
 
   // Scala (Common)
