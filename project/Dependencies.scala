@@ -347,7 +347,9 @@ object Dependencies {
   )
 
   val transformerKafkaDependencies = Seq(
-    hadoopAzure
+    hadoopAzure,
+    aws2s3,
+    aws2sqs
   )
 
   val commonStreamTransformerExclusions =
