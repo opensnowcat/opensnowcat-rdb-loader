@@ -182,7 +182,7 @@ object Config {
   object QueueConfig {
     final case class SNS(topicArn: String, region: Region) extends QueueConfig
 
-    final case class SQS(queueName: String, region: Region) extends QueueConfig
+    final case class SQS(queueName: String, region: Region, messageGroupId: Option[String] = None) extends QueueConfig
 
     final case class Pubsub(
       topic: String,

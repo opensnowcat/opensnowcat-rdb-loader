@@ -132,6 +132,7 @@ object Processing {
     val nonParquetSink = (w: Window) =>
       (_: State[C]) =>
         (k: SinkPath) => {
+          implicit val compressionInstance = FS2Compression.forSync[F]
           val blobSink =
             getBlobStorageSink(resources.blobStorage, BlobStorage.Folder.coerce(config.path.toString), config.compression, w, k)
           k.pathType match {

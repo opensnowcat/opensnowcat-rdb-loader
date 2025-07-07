@@ -18,6 +18,7 @@ import cats.effect._
 import com.snowplowanalytics.snowplow.rdbloader.azure._
 import com.snowplowanalytics.snowplow.rdbloader.common.cloud.Queue
 import com.snowplowanalytics.snowplow.rdbloader.transformer.stream.common.Config
+import com.snowplowanalytics.snowplow.rdbloader.aws.SQS
 
 private[kafka] object Queues {
 
@@ -52,12 +53,16 @@ private[kafka] object Queues {
   def createShreddingCompleteQueue[F[_]: Async](queueConfig: Config.QueueConfig): Resource[F, Queue.Producer[F]] =
     queueConfig match {
       case kafka: Config.QueueConfig.Kafka =>
+        println(s"Using Kafka topic for shredding complete: ${kafka.topicName}")
         KafkaProducer.producer[F](
           kafka.bootstrapServers,
           kafka.topicName,
           kafka.producerConf
         )
+      case sqs: Config.QueueConfig.SQS =>
+        println(s"Using SQS queue for shredding complete: ${sqs.queueName}")
+        SQS.producer(sqs.queueName, sqs.region.name, sqs.messageGroupId.getOrElse("shredding"))
       case _ =>
-        Resource.eval(Async[F].raiseError(new IllegalArgumentException(s"Message queue is not Kafka")))
+        Resource.eval(Async[F].raiseError(new IllegalArgumentException(s"Message queue is not Kafka or SQS")))
     }
 }
