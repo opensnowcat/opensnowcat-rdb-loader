@@ -70,6 +70,14 @@
     }
   }
 
+  # SQS queue settings
+  #"queue": {
+  #  "type": "sqs",
+  #  "queueName": "a-sqs-queue.fifo",
+  #  "region": "us-west-2"
+  #  "messageGroupId": "shredding"
+  #}
+
   "formats": {
     # Optional. Denotes output file format.
     # Possible values are 'json' and 'parquet'. Default value 'json'.
