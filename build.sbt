@@ -193,7 +193,8 @@ lazy val transformerKafka = project
   .settings(excludeDependencies ++= Dependencies.commonStreamTransformerExclusions)
   .dependsOn(
     commonTransformerStream % "compile->compile;test->test;runtime->runtime",
-    azure % "compile->compile;test->test;runtime->runtime"
+    azure % "compile->compile;test->test;runtime->runtime",
+    aws % "compile->compile;test->test;runtime->runtime"
   )
   .enablePlugins(JavaAppPackaging, SnowplowDockerPlugin, BuildInfoPlugin)
 
