@@ -15,6 +15,7 @@
 package com.snowplowanalytics.snowplow.rdbloader.transformer.stream.kafka
 
 import cats.effect._
+import com.snowplowanalytics.snowplow.rdbloader.aws.S3
 import com.snowplowanalytics.snowplow.rdbloader.azure.AzureBlobStorage
 import com.snowplowanalytics.snowplow.rdbloader.common.cloud.BlobStorage
 import com.snowplowanalytics.snowplow.rdbloader.transformer.stream.common.parquet.ParquetOps
@@ -44,6 +45,8 @@ object Main extends IOApp {
     output match {
       case c: Config.Output.AzureBlobStorage =>
         AzureBlobStorage.createDefault[F](c.path)
+      case s3: Config.Output.S3 =>
+        S3.blobStorage(s3.region.name)
       case _ =>
         Resource.eval(Async[F].raiseError(new IllegalArgumentException(s"Output is not Azure Blob Storage")))
     }
