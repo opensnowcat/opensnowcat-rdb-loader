@@ -1,0 +1,13 @@
+{
+  "input": {
+    "topicName": "enriched"
+    "bootstrapServers": "localhost:9092"
+  }
+  "output": {
+    "path": "s3://bucket/transformed/"
+  }
+  "queue": {
+    "type": "sqs"
+    "queueName": "a-sqs-queue.fifo"
+  }
+}

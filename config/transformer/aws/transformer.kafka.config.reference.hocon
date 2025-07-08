@@ -22,10 +22,14 @@
   # Path to transformed archive
   "output": {
     # Path to transformer output
-    "path": "https://accountName.blob.core.windows.net/transformed/",
+    "path": "s3://bucket/transformed/",
     # Transformer output compression, GZIP or NONE
     # Optional, default value GZIP
     "compression": "GZIP",
+    # Optional if it can be resolved with AWS region provider chain.
+    "region": "eu-central-1",
+    # Max number of events per parquet partition.
+    "maxRecordsPerFile": 10000
 
     # Optional section specifying details about badrows output. When unspecified, badrows are written as files under 'output.path' URI
     "bad": {
@@ -52,22 +56,12 @@
   # Optional, default value 10 minutes
   "windowing": "10 minutes"
 
-  # Kafka topic used to communicate with Loader
+  # SQS queue settings
   "queue": {
-    "type": "kafka",
-    
-    # Name of the Kafka topic to write to
-    "topicName": "loaderTopic"
-    
-    # A list of host:port pairs to use for establishing the initial connection to the Kafka cluster
-    # This list should be in the form host1:port1,host2:port2,...
-    "bootstrapServers": "localhost:9092"
-    
-    # Optional, Kafka producer configuration
-    # See https://kafka.apache.org/documentation/#producerconfigs for all properties
-    "producerConf": {
-      "acks": "all"
-    }
+    "type": "sqs"
+    "queueName": "a-sqs-queue.fifo"
+    "region": "us-west-2"
+    "messageGroupId": "shredding"
   }
 
   "formats": {
