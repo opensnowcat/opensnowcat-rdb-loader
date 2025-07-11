@@ -99,7 +99,7 @@ object Main extends IOApp {
 
   private def mkQueue[F[_]: Async](queueConfig: Config.QueueConfig): Resource[F, Queue.Producer[F]] =
     queueConfig match {
-      case Config.QueueConfig.SQS(queueName, region) =>
+      case Config.QueueConfig.SQS(queueName, region, _) =>
         SQS.producer(queueName, region.name, QueueMessageGroupId)
       case Config.QueueConfig.SNS(topicArn, region) =>
         SNS.producer(topicArn, region.name, QueueMessageGroupId)

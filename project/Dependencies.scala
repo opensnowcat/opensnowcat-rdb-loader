@@ -64,8 +64,8 @@ object Dependencies {
     val redshiftJdbc = "1.2.55.1083"
     val snowflakeJdbc = "3.16.0"
     val enumeratum = "1.7.4"
-    val aws = "1.12.761"
-    val aws2 = "2.26.21"
+    val aws = "1.12.787"
+    val aws2 = "2.31.76"
     val jSch = "0.2.17"
     val sentry = "1.7.30"
     val protobuf = "4.27.2" // Fix CVE
@@ -82,8 +82,9 @@ object Dependencies {
   }
 
   val resolutionRepos = Seq(
+    "redshift-release" at "https://s3.amazonaws.com/redshift-maven-repository/release/",
     // Redshift native driver
-    ("redshift" at "http://redshift-maven-repository.s3-website-us-east-1.amazonaws.com/release").withAllowInsecureProtocol(true)
+    ("redshift" at "http://redshift-maven-repository.s3-website-us-east-1.amazonaws.com/release").withAllowInsecureProtocol(true),
   )
 
   // Scala (Common)
@@ -346,7 +347,9 @@ object Dependencies {
   )
 
   val transformerKafkaDependencies = Seq(
-    hadoopAzure
+    hadoopAzure,
+    aws2s3,
+    aws2sqs
   )
 
   val commonStreamTransformerExclusions =
